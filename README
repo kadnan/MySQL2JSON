@@ -1,1 +1,1 @@
-MySQL2Json is a class that converts MySQL RESULTSET into JSON.
+MySQL2Json is a PHP class that converts MySQL RESULTSET into JSON.
