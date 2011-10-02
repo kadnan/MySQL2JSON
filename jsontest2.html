@@ -1,0 +1,65 @@
+<!-- 
+
+ Filename: jsontext2.html 
+ Purpose: Example file which is calling example.php to parse JSON data on webpage
+ Author: Adnan Siddiqi <kadnan@gmail.com> 
+ License: PHP License 
+ Date: Tuesday,June 21, 2006 
+ -->
+<html>
+
+<title>JSON test</title>
+<head>
+<script language="javascript" src="json.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+//Global Variable
+var req;
+
+function fetchJSON(){
+ 
+ 	var url="example.php";
+	
+	if(window.XMLHttpRequest){
+		req=new XMLHttpRequest();
+	}
+	
+	if(window.ActiveXObject){
+		req=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	req.open("GET",url,true);
+	req.onreadystatechange=parsedJSON;//call Back function
+	req.send(null);
+											
+ }
+ 
+ function parsedJSON(){
+ 
+		
+	if(req.readyState==4){
+ 		//for OK
+		if(req.status==200){
+		
+		eval('json = ' + req.responseText);
+		var myJSONText = req.responseText.parseJSON();
+		document.getElementById("jsonValue").innerHTML=json.data[1].first_name;
+		
+		
+		
+		
+	
+		}
+ 	}
+					 	
+ }
+
+</script>
+</head>
+
+
+<body>
+<p><a href="javascript:fetchJSON();">Fetch JSON </a></p>
+<strong>Value returned from Json:</strong>
+<div id="jsonValue" style="color:#0000FF; font:Arial, Helvetica, sans-serif; width:100px "></div>  
+</body>
+</html>
